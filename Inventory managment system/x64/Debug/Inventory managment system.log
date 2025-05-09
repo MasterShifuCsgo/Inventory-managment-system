@@ -1,0 +1,43 @@
+﻿  Collection.cpp
+  Inventory managment system.cpp
+C:\Users\kaspar\source\repos\Inventory managment system\Inventory managment system\Item.h(3,7): error C2011: 'Item': 'class' type redefinition
+  (compiling source file 'Collection.cpp')
+      C:\Users\kaspar\source\repos\Inventory managment system\Inventory managment system\Item.h(3,7):
+      see declaration of 'Item'
+  
+C:\Users\kaspar\source\repos\Inventory managment system\Inventory managment system\Collection.cpp(8,14): error C2600: 'Collection::~Collection': cannot define a compiler-generated special member function (must be declared in the class first)
+C:\Users\kaspar\source\repos\Inventory managment system\Inventory managment system\Collection.cpp(11,3): error C2027: use of undefined type 'Item'
+      C:\Users\kaspar\source\repos\Inventory managment system\Inventory managment system\Item.h(3,7):
+      see declaration of 'Item'
+  
+C:\Users\kaspar\source\repos\Inventory managment system\Inventory managment system\Collection.cpp(15,3): error C2027: use of undefined type 'Item'
+      C:\Users\kaspar\source\repos\Inventory managment system\Inventory managment system\Item.h(3,7):
+      see declaration of 'Item'
+  
+C:\Users\kaspar\source\repos\Inventory managment system\Inventory managment system\Collection.cpp(19,3): error C2027: use of undefined type 'Item'
+      C:\Users\kaspar\source\repos\Inventory managment system\Inventory managment system\Item.h(3,7):
+      see declaration of 'Item'
+  
+C:\Users\kaspar\source\repos\Inventory managment system\Inventory managment system\Collection.cpp(22,55): error C2027: use of undefined type 'Item'
+      C:\Users\kaspar\source\repos\Inventory managment system\Inventory managment system\Item.h(3,7):
+      see declaration of 'Item'
+  
+C:\Users\kaspar\source\repos\Inventory managment system\Inventory managment system\Collection.cpp(24,64): error C2027: use of undefined type 'Item'
+      C:\Users\kaspar\source\repos\Inventory managment system\Inventory managment system\Item.h(3,7):
+      see declaration of 'Item'
+  
+C:\Users\kaspar\source\repos\Inventory managment system\Inventory managment system\Collection.cpp(27,10): error C2027: use of undefined type 'Item'
+      C:\Users\kaspar\source\repos\Inventory managment system\Inventory managment system\Item.h(3,7):
+      see declaration of 'Item'
+  
+C:\Users\kaspar\source\repos\Inventory managment system\Inventory managment system\Collection.cpp(30,56): error C2027: use of undefined type 'Item'
+      C:\Users\kaspar\source\repos\Inventory managment system\Inventory managment system\Item.h(3,7):
+      see declaration of 'Item'
+  
+C:\Users\kaspar\source\repos\Inventory managment system\Inventory managment system\Collection.cpp(32,53): error C2027: use of undefined type 'Item'
+      C:\Users\kaspar\source\repos\Inventory managment system\Inventory managment system\Item.h(3,7):
+      see declaration of 'Item'
+  
+  Item.cpp
+C:\Users\kaspar\source\repos\Inventory managment system\Inventory managment system\Item.cpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Generating Code...

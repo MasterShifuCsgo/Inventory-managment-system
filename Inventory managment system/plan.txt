@@ -1,0 +1,45 @@
+﻿Project Title: Simple Inventory Management System
+
+Description:
+Create a console-based inventory management app for a small store. It allows users to:
+- Add items
+- View items
+- Update item details
+- Delete items
+- Save/load data to a file
+
+Features to Implement:
+
+1. Item Struct/Class
+   - ID (auto-incremented)
+   - Name
+   - Quantity
+   - Price
+
+2. Core Functionalities
+   - Add new item
+   - View all items
+   - Search item by name or ID
+   - Edit item (e.g., change price or quantity)
+   - Delete item
+
+3. File Operations
+   - Save inventory to a .txt or .csv file
+   - Load inventory from a file on startup
+
+4. Simple Menu System
+   - Looping menu in the console
+   - Input validation
+
+Tools/Concepts to Practice:
+- C++ Classes & Objects
+- Vectors or arrays
+- File I/O (fstream)
+- Basic error handling
+- Input validation
+- Separation of concerns (header files vs. logic)
+
+Bonus Challenges (optional):
+- Sort items (e.g., by name or price)
+- Add unit tests with a framework like Catch2
+- Build a simple GUI using Qt (stretch goal)
