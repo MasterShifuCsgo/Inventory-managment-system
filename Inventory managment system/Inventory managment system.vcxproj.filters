@@ -21,7 +21,13 @@
     <ClCompile Include="Item.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Collection.cpp">
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryDisplay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,7 +38,13 @@
     <ClInclude Include="Item.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="Collection.h">
+    <ClInclude Include="Inventory.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryDisplay.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInput.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>

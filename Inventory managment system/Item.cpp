@@ -1,18 +1,17 @@
 #include <string>
-#include "Item.h";
-#include "Collection.h"
+#include "Item.h"
 
 
-Item::Item(int price, int quantity, std::string itemName,
+Item::Item(float price, int quantity, std::string itemName,
            std::string details) { 
   this->id = id++;
   this->price = price;
   this->quantity = quantity;
-  this->itemName = itemName;
+  this->name = itemName;
   this->details = details;  
 }
 
-
+Item::Item() : Item(0, 0, "no name", "no details") {}
 
 
 
