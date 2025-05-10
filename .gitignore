@@ -1,4 +1,4 @@
-# Prerequisites
+# Prerequisite files (dependency files)
 *.d
 
 # Compiled Object files
@@ -11,23 +11,69 @@
 *.gch
 *.pch
 
-# Compiled Dynamic libraries
+# Compiled Dynamic Libraries
 *.so
 *.dylib
 *.dll
 
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
+# Compiled Static Libraries
 *.lai
 *.la
 *.a
 *.lib
 
-# Executables
+# Executables (common extensions and extensionless)
 *.exe
 *.out
 *.app
-/.vs/Inventory managment system
+*.elf
+*.bin
+*.hex
+*.run
+*.x
+*.cbin
+*.axf
+
+# Executables with no extension (Linux/macOS)
+a.out
+*.out
+*/a.out
+*/a.exe
+*/main
+*/main.exe
+
+# Ignore executables in all directories (extensionless heuristic)
+**/main
+**/main.*
+**/a.out
+**/*.out
+
+# Fortran Module Files
+*.mod
+*.smod
+
+# Visual Studio & IDE Files
+.vs/
+*.vcxproj.user
+*.VC.db
+*.VC.opendb
+*.sdf
+
+# Project-specific folder with a typo-safe name
+.vs/Inventory*manag*
+
+# CMake and build artifacts
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+build/
+out/
+bin/
+*.log
+
+# Backup and temporary files
+*~
+*.swp
+*.bak
+*.tmp
