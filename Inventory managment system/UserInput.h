@@ -3,6 +3,7 @@
 #include <limits>
 #include <string>
 #include <type_traits>
+#include <optional>
 //exit codes for getUserInput
 //  Integral types
 template <typename T>
@@ -45,9 +46,27 @@ isDefault(const T&) {
         if (isDefault(reciver)) {
           return reciver;  
         }
-
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return reciver;
       }
     }
   } 
+
+template <typename T>
+  std::optional<T> getField(const std::string& prompt) {
+    std::cout << prompt;
+    T value = getUserInput<T>();
+
+    if constexpr (std::is_same_v<T, std::string>) {
+      if (value == "99") {
+        std::cout << "Returning to main menu.\n";
+        return std::nullopt;
+      }
+    } else { // For numeric types
+      if (value == 99) {
+        std::cout << "Returning to main menu.\n";
+        return std::nullopt;
+      }
+    }
+    return value;
+  }
