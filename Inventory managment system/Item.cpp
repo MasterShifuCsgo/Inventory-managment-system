@@ -4,7 +4,8 @@
 
 Item::Item(float price, int quantity, std::string itemName,
            std::string details) { 
-  this->id = id++;
+  static int idCounter = 0;
+  this->id = ++idCounter;
   this->price = price;
   this->quantity = quantity;
   this->name = itemName;
@@ -13,5 +14,6 @@ Item::Item(float price, int quantity, std::string itemName,
 
 Item::Item() : Item(0, 0, "no name", "no details") {}
 
+int Item::getId() const { return this->id - 1; }
 
 

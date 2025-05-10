@@ -28,13 +28,13 @@ class InventoryDisplay {
 
   void UIsetPrice();
 
-  void UIgetItemName();
+  void UIgetItemName() const;
 
-  void UIgetItemDetails();
+  void UIgetItemDetails() const;
 
-  void UIgetQuantity();
+  void UIgetQuantity() const;
 
-  void UIgetPrice();
+  void UIgetPrice() const;
 
   void UIaddItem();
 
@@ -45,6 +45,8 @@ class InventoryDisplay {
   void UISearchQuantity();
 
   void UISearchPrice();
+
+  void UISearchDetails();
 
   void displaySearchResults(const std::vector<Item>& results,
                             const std::string& searchType);

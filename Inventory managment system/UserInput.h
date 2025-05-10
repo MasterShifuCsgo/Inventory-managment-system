@@ -3,40 +3,10 @@
 #include <limits>
 #include <string>
 #include <type_traits>
-<<<<<<< HEAD
 #include <optional>
-=======
->>>>>>> bbbbcc49fc9bc826f80563b8db686e404c8bda32
-//exit codes for getUserInput
-//  Integral types
-template <typename T>
-typename std::enable_if<std::is_integral<T>::value, bool>::type isDefault(
-    const T& value) {
-  return value == 99;
-}
 
-// Floating-point types
-template <typename T>
-typename std::enable_if<std::is_floating_point<T>::value, bool>::type isDefault(
-    const T& value) {
-  return value == 99.0;
-}
 
-// String (handled via overload, not specialization)
-bool isDefault(const std::string& value);
-
-// Unknown types fallback
-template <typename T>
-typename std::enable_if<!std::is_integral<T>::value &&
-                            !std::is_floating_point<T>::value &&
-                            !std::is_same<T, std::string>::value,
-                        bool>::type
-isDefault(const T&) {
-  std::cerr << "Default value for type unknown\n";
-  return false;
-}
-
-  template<typename T>
+  template <typename T, std::enable_if_t< std::is_arithmetic_v<T>, int> = 0>  
   T getUserInput() {      
     T reciver;
     while (true) {
@@ -44,21 +14,28 @@ isDefault(const T&) {
       if (std::cin.fail()) {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Please try again";
+        std::cout << "Please try again: ";
       } else {               
-        if (isDefault(reciver)) {
-          return reciver;  
-        }
-<<<<<<< HEAD
-=======
-
->>>>>>> bbbbcc49fc9bc826f80563b8db686e404c8bda32
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return reciver;
       }
     }
   } 
-<<<<<<< HEAD
+
+  template <typename T, std::enable_if_t<std::is_same_v<T, std::string>, int> = 0>
+  T getUserInput() {
+    T reciver;
+    while (true) {
+      std::getline(std::cin, reciver);
+      if (std::cin.fail()) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Input Error. Please try again: ";
+      } else {        
+        return reciver;
+      }
+    }
+  }
 
 template <typename T>
   std::optional<T> getField(const std::string& prompt) {
@@ -66,17 +43,15 @@ template <typename T>
     T value = getUserInput<T>();
 
     if constexpr (std::is_same_v<T, std::string>) {
-      if (value == "99") {
+      if (value == "-1") {
         std::cout << "Returning to main menu.\n";
         return std::nullopt;
       }
     } else { // For numeric types
-      if (value == 99) {
+      if (value == -1) {
         std::cout << "Returning to main menu.\n";
         return std::nullopt;
       }
     }
     return value;
   }
-=======
->>>>>>> bbbbcc49fc9bc826f80563b8db686e404c8bda32

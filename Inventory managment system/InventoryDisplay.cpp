@@ -13,17 +13,18 @@
     std::cout << "0. Set Item Name\n";
     std::cout << "1. Set Item Details\n";
     std::cout << "2. Set Item Quantity\n";
-    std::cout << "3. Set Item Price\n";
+    std::cout << "3. Set Item Price\n\n";
     std::cout << "4. Get Item Name\n";
     std::cout << "5. Get Item Details\n";
     std::cout << "6. Get Item Quantity\n";
-    std::cout << "7. Get Item Price\n";
+    std::cout << "7. Get Item Price\n\n";
     std::cout << "8. Add New Item\n";
-    std::cout << "9. Delete Item\n";
+    std::cout << "9. Delete Item\n\n";
     std::cout << "10. Search Item by Name\n";
     std::cout << "11. Search Item by Quantity Range\n";
     std::cout << "12. Search Item by Price Range\n";
-    std::cout << "99. Exit\n";
+    std::cout << "13. Search Item by Details\n";
+    std::cout << "-1. Exit\n";
     std::cout << "=======================================\n";
   }
 
@@ -68,49 +69,42 @@
   void InventoryDisplay::UIsetItemName() {
     std::cout << "UI: Set Item Name\n\n"
               << "What you have to enter:\n"
-              << "- item index\n"
+              << "- item id\n"
               << "- new item name\n\n";
 
-    auto itemIndex = getField<int>("Enter item index: ");
-    if (!itemIndex.has_value()) {
+    auto itemId = getField<int>("Enter item id: ");
+    if (!itemId.has_value()) {
       std::cout << "Returning to main menu.\n";
       return;
     }
-      std::cout << "Invalid Item Index" << std::endl;
-      return;
-    }
-    std::cout << "Current Item Name: " << inv.getItemName(itemIndex.value())
+
+    std::cout << "Current Item Name: " << inv.getItemName(itemId.value())
               << std::endl;
 
-    auto itemName =
-        getField<std::string>("Enter new item name: ");  // Use getStringField
+    auto itemName = getField<std::string>("Enter new item name: ");
     if (!itemName.has_value()) {
       std::cout << "Returning to main menu.\n";
       return;
     }
 
-    this->inv.setItemName(itemIndex.value(), itemName.value());
-    std::cout << "Operation Complete: Item name updated.\n";
+    inv.setItemName(itemId.value(), itemName.value());
+    std::cout << "Operation Complete: Item name update.\n";
   }
 
   void InventoryDisplay::UIsetItemDetails() {
     std::cout << "UI: Set Item Details\n\n"
               << "What you have to enter:\n"
-              << "- item index\n"
+              << "- item id\n"
               << "- new item details\n\n";
 
-    auto itemIndex = getField<int>("Enter item index: ");
-    if (!itemIndex.has_value()) {
+    auto itemId = getField<int>("Enter item id: ");
+    if (!itemId.has_value()) {
       std::cout << "Returning to main menu.\n";
       return;
     }
 
-    if (itemIndex.value() < 0 || itemIndex.value() >= this->inv.items.size()) {
-      std::cout << "Invalid Item Index" << std::endl;
-      return;
-    }
-    std::cout << "Current Item Details: "
-              << inv.getItemDetails(itemIndex.value()) << std::endl;
+    std::cout << "Current Item Details: " << inv.getItemDetails(itemId.value())
+              << std::endl;
 
     auto itemDetails = getField<std::string>("Enter new item details: ");
     if (!itemDetails.has_value()) {
@@ -118,27 +112,23 @@
       return;
     }
 
-    this->inv.setItemDetails(itemIndex.value(), itemDetails.value());
-    std::cout << "Operation Complete: Item details updated.\n";
+    this->inv.setItemDetails(itemId.value(), itemDetails.value());
+    std::cout << "Operation Complete: Item details update.\n";
   }
 
   void InventoryDisplay::UIsetQuantity() {
     std::cout << "UI: Set Item Quantity\n\n"
               << "What you have to enter:\n"
-              << "- item index\n"
+              << "- item id\n"
               << "- new item quantity\n\n";
 
-    auto itemIndex = getField<int>("Enter item index: ");
-    if (!itemIndex.has_value()) {
+    auto itemId = getField<int>("Enter item id: ");
+    if (!itemId.has_value()) {
       std::cout << "Returning to main menu.\n";
       return;
     }
 
-    if (itemIndex.value() < 0 || itemIndex.value() >= this->inv.items.size()) {
-      std::cout << "Invalid Item Index" << std::endl;
-      return;
-    }
-    std::cout << "Current Item Quantity: " << inv.getQuantity(itemIndex.value())
+    std::cout << "Current Item Quantity: " << inv.getQuantity(itemId.value())
               << std::endl;
 
     auto newQuantity = getField<int>("Enter new item quantity: ");
@@ -147,27 +137,23 @@
       return;
     }
 
-    this->inv.setQuantity(itemIndex.value(), newQuantity.value());
-    std::cout << "Operation Complete: Item quantity updated.\n";
+    this->inv.setQuantity(itemId.value(), newQuantity.value());
+    std::cout << "Operation Complete: Item quantity update.\n";
   }
 
   void InventoryDisplay::UIsetPrice() {
     std::cout << "UI: Set Item Price\n\n"
               << "What you have to enter:\n"
-              << "- item index\n"
+              << "- item id\n"
               << "- new item price\n\n";
 
-    auto itemIndex = getField<int>("Enter item index: ");
-    if (!itemIndex.has_value()) {
+    auto itemId = getField<int>("Enter item id: ");
+    if (!itemId.has_value()) {
       std::cout << "Returning to main menu.\n";
       return;
     }
 
-    if (itemIndex.value() < 0 || itemIndex.value() >= this->inv.items.size()) {
-      std::cout << "Invalid Item Index" << std::endl;
-      return;
-    }
-    std::cout << "Current Item Price: " << inv.getPrice(itemIndex.value())
+    std::cout << "Current Item Price: " << inv.getPrice(itemId.value())
               << std::endl;
 
     auto newPrice = getField<float>("Enter new item price: ");
@@ -176,72 +162,55 @@
       return;
     }
 
-    this->inv.setPrice(itemIndex.value(), newPrice.value());
-    std::cout << "Operation Complete: Item price updated.\n";
+    this->inv.setPrice(itemId.value(), newPrice.value());
+    std::cout << "Operation Complete: Item price update.\n";
   }
 
-  void InventoryDisplay::UIgetItemName() {
-    std::cout << "UI: Get Item Name\n\nEnter item index: ";
-    auto itemIndex = getField<int>("Enter item index: ");
-    if (!itemIndex.has_value()) {
+  void InventoryDisplay::UIgetItemName() const {
+    std::cout << "UI: Get Item Name\n\nEnter item id: ";
+    auto itemId = getField<int>("Enter item id: ");
+    if (!itemId.has_value()) {
       std::cout << "Returning to main menu.\n";
       return;
     }
-    if (itemIndex.value() < 0 || itemIndex.value() >= this->inv.items.size()) {
-      std::cout << "Invalid Item Index" << std::endl;
+    std::cout << "Item Name: " << inv.getItemName(itemId.value()) << std::endl;
+    std::cout << "Operation Complete.\n";
+  }
+
+  void InventoryDisplay::UIgetItemDetails() const {
+    std::cout << "UI: Get Item Details\n\nEnter item id: ";
+    auto itemId = getField<int>("Enter item id: ");
+    if (!itemId.has_value()) {
+      std::cout << "Returning to main menu.\n";
       return;
     }
-    std::cout << "Item Name: " << inv.getItemName(itemIndex.value())
+    std::cout << "Item Details: " << inv.getItemDetails(itemId.value())
               << std::endl;
     std::cout << "Operation Complete.\n";
   }
 
-  void InventoryDisplay::UIgetItemDetails() {
-    std::cout << "UI: Get Item Details\n\nEnter item index: ";
-    auto itemIndex = getField<int>("Enter item index: ");
-    if (!itemIndex.has_value()) {
+  void InventoryDisplay::UIgetQuantity() const {
+    std::cout << "UI: Get Item Quantity\n\nEnter item id: ";
+    auto itemId = getField<int>("Enter item id: ");
+    if (!itemId.has_value()) {
       std::cout << "Returning to main menu.\n";
       return;
     }
-    if (itemIndex.value() < 0 || itemIndex.value() >= this->inv.items.size()) {
-      std::cout << "Invalid Item Index" << std::endl;
-      return;
-    }
-    std::cout << "Item Details: " << inv.getItemDetails(itemIndex.value())
-              << std::endl;
-    std::cout << "Operation Complete.\n";
-  }
-
-  void InventoryDisplay::UIgetQuantity() {
-    std::cout << "UI: Get Item Quantity\n\nEnter item index: ";
-    auto itemIndex = getField<int>("Enter item index: ");
-    if (!itemIndex.has_value()) {
-      std::cout << "Returning to main menu.\n";
-      return;
-    }
-    if (itemIndex.value() < 0 || itemIndex.value() >= this->inv.items.size()) {
-      std::cout << "Invalid Item Index" << std::endl;
-      return;
-    }
-    int quantity = inv.getQuantity(itemIndex.value());
+    int quantity = inv.getQuantity(itemId.value());
     if (quantity != -1) {
       std::cout << "Item Quantity: " << quantity << std::endl;
     }
     std::cout << "Operation Complete.\n";
   }
 
-  void InventoryDisplay::UIgetPrice() {
-    std::cout << "UI: Get Item Price\n\nEnter item index: ";
-    auto itemIndex = getField<int>("Enter item index: ");
-    if (!itemIndex.has_value()) {
+  void InventoryDisplay::UIgetPrice() const {
+    std::cout << "UI: Get Item Price\n\nEnter item id: ";
+    auto itemId = getField<int>("Enter item id: ");
+    if (!itemId.has_value()) {
       std::cout << "Returning to main menu.\n";
       return;
     }
-    if (itemIndex.value() < 0 || itemIndex.value() >= this->inv.items.size()) {
-      std::cout << "Invalid Item Index" << std::endl;
-      return;
-    }
-    float price = inv.getPrice(itemIndex.value());
+    float price = inv.getPrice(itemId.value());
     if (price != -1.0f) {
       std::cout << "Item Price: " << price << std::endl;
     }
@@ -249,16 +218,10 @@
   }
 
   void InventoryDisplay::UIaddItem() {
-    std::cout << "UI: Add New Item\n\nEnter item details:\n";
+    std::cout << "UI: Add New Item\n\n";
 
     auto name = getField<std::string>("Enter item name: ");
     if (!name.has_value()) {
-      std::cout << "Returning to main menu.\n";
-      return;
-    }
-
-    auto details = getField<std::string>("Enter item details: ");
-    if (!details.has_value()) {
       std::cout << "Returning to main menu.\n";
       return;
     }
@@ -274,33 +237,34 @@
       std::cout << "Returning to main menu.\n";
       return;
     }
-    
-    Item item(price.value(), quantity.value(), name.value(),
-              details.value());  // Use .value()
-    inv.addItem(item);
-    std::cout << "Operation Complete: Item added.\n";
-  }
 
-  void InventoryDisplay::UIdeleteItem() {
-    std::cout << "UI: Delete Item\n\nEnter the index of the item to delete: ";
-    auto itemIndex = getField<int>("Enter the index of the item to delete: ");
-    if (!itemIndex.has_value()) {
+    auto details = getField<std::string>("Enter item details: ");
+    if (!details.has_value()) {
       std::cout << "Returning to main menu.\n";
       return;
     }
-    if (itemIndex.value() < 0 || itemIndex.value() >= this->inv.items.size()) {
-      std::cout << "Invalid Item Index" << std::endl;
+
+    Item item(price.value(), quantity.value(), name.value(),
+              details.value());  // Use .value()
+    inv.addItem(item);
+    std::cout << "Operation Complete: Item addition.\nItem id: "
+              << inv.items.back().getId() << std::endl;
+  }
+
+  void InventoryDisplay::UIdeleteItem() {
+    std::cout << "UI: Delete Item\n\n";
+    auto itemIdToDelete = getField<int>("Enter the id of the item to delete: ");
+    if (!itemIdToDelete.has_value()) {
+      std::cout << "Returning to main menu.\n";
       return;
     }
-    std::cout << "Deleting Item: " << inv.getItemName(itemIndex.value())
-              << std::endl;
-    inv.deleteItem(itemIndex.value());
-    std::cout << "Operation Complete: Item deleted.\n";
+    inv.deleteItem(itemIdToDelete.value());
+    std::cout << "Operation Complete: Item Deletion.\n";
   }
 
   void InventoryDisplay::UISearchItemName() {
-    std::cout << "UI: Search Item by Name\n\nEnter the name to search for: ";
-    auto searchName = getField<std::string>("\nEnter item name: ");
+    std::cout << "UI: Search Item by Name\n\nEnter the name to search for:\n";
+    auto searchName = getField<std::string>("Enter item name: ");
     if (!searchName.has_value()) {
       std::cout << "Returning to main menu.\n";
       return;
@@ -344,6 +308,17 @@
     displaySearchResults(results, "Price");
   }
 
+  void InventoryDisplay::UISearchDetails() {
+    std::cout << "UI: Search Item by Details\n\nEnter a word to search for:\n";
+    auto searchName = getField<std::string>("Enter word: ");
+    if (!searchName.has_value()) {
+      std::cout << "Returning to main menu.\n";
+      return;
+    }
+    std::vector<Item> results = inv.searchDetails(searchName.value());
+    displaySearchResults(results, "Details");
+  }
+
   void InventoryDisplay::displaySearchResults(const std::vector<Item>& results,
                             const std::string& searchType) {
     if (results.empty()) {
@@ -352,11 +327,18 @@
     } else {
       std::cout << "\n--- Search Results (by " << searchType << ") ---\n";
       for (size_t i = 0; i < results.size(); ++i) {
-        std::cout << "Item " << i << ": " << results[i].name
-                  << " (Qty: " << results[i].quantity
-                  << ", Price: " << results[i].price << ")\n";
+        std::cout << ">->->->->-> Item index: " << i
+                  << " >->->->->->\n" 
+                  << "Id: " << results[i].getId() << '\n'                  
+                  << "Name: " << results[i].name << '\n'
+                  << "Qty: " << results[i].quantity << '\n'
+                  << "Price: " << results[i].price << "\n"
+                  << "Details: " << results[i].details << "\n"
+                  << std::endl;
       }
       std::cout << "---------------------------------------\n";
     }
     std::cout << "Operation Complete.\n";
   }
+
+
