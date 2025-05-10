@@ -104,7 +104,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+<<<<<<< HEAD
       <LanguageStandard>stdcpp17</LanguageStandard>
+=======
+      <LanguageStandard>Default</LanguageStandard>
+>>>>>>> bbbbcc49fc9bc826f80563b8db686e404c8bda32
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>

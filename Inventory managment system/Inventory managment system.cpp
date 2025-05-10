@@ -6,46 +6,12 @@
 #include "InventoryDisplay.h"
 #include "UserInput.h"
 
-
-
-
-
-
-
-
 int main()
 {
   system("cls"); // unfortunately only works on windows  
     
   std::cout << "Project: Simple Inventory Management System\n";        
 
-  std::vector<Item> items = {};  
-
-  for (int i = 0; i < 100; i++) {
-    Item item;
-    items.push_back(item);
-  }
-
-  Inventory inventory(items);
-  InventoryDisplay display(inventory);
-
-  // holds functions that have been sent to the terminal and the user can interact with.
-  const std::vector<std::function<void(void)>> InteractableFunctions = 
-    {[&]() { display.UIsetItemName(); },
-     [&]() { display.UIsetItemDetails(); },
-     [&]() { display.UIsetQuantity(); },
-     [&]() { display.UIsetPrice(); },
-     [&]() { display.UIgetItemName(); },
-     [&]() { display.UIgetItemDetails(); },
-     [&]() { display.UIgetQuantity(); },
-     [&]() { display.UIgetPrice(); },
-     [&]() { display.UIaddItem(); },
-     [&]() { display.UIdeleteItem(); },
-     [&]() { display.UISearchItemName(); },
-     [&]() { display.UISearchQuantity(); },
-     [&]() { display.UISearchPrice(); }};
-
-  //UI
   while (true) {
     display.welcome();
     std::cout << "Please select an option above: ";

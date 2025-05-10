@@ -111,3 +111,5 @@ std::vector<Item> Inventory::searchPrice(float min, float max) {
       [&](Item& item) { return min < item.price && item.price < max; });
 }
 
+int Inventory::getSize() const { return items.size(); }
+

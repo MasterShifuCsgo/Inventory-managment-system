@@ -3,7 +3,10 @@
 #include <limits>
 #include <string>
 #include <type_traits>
+<<<<<<< HEAD
 #include <optional>
+=======
+>>>>>>> bbbbcc49fc9bc826f80563b8db686e404c8bda32
 //exit codes for getUserInput
 //  Integral types
 template <typename T>
@@ -46,11 +49,16 @@ isDefault(const T&) {
         if (isDefault(reciver)) {
           return reciver;  
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> bbbbcc49fc9bc826f80563b8db686e404c8bda32
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return reciver;
       }
     }
   } 
+<<<<<<< HEAD
 
 template <typename T>
   std::optional<T> getField(const std::string& prompt) {
@@ -70,3 +78,5 @@ template <typename T>
     }
     return value;
   }
+=======
+>>>>>>> bbbbcc49fc9bc826f80563b8db686e404c8bda32

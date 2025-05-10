@@ -76,9 +76,6 @@
       std::cout << "Returning to main menu.\n";
       return;
     }
-
-    if (itemIndex.value() < 0 ||
-        itemIndex.value() >= this->inv.items.size()) {  // Use .value(), and size()
       std::cout << "Invalid Item Index" << std::endl;
       return;
     }
@@ -277,7 +274,7 @@
       std::cout << "Returning to main menu.\n";
       return;
     }
-
+    
     Item item(price.value(), quantity.value(), name.value(),
               details.value());  // Use .value()
     inv.addItem(item);
