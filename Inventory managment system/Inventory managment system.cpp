@@ -30,6 +30,9 @@ int main() {
   Inventory inventory(items);
   InventoryDisplay display(inventory);
 
+
+
+    // maybe create a vairable for the lambda that is used to describe the function? this way the welcome page and this vector are not seperated.
     const std::vector<std::function<void(void)>> InteractableFunctions = {
         [&]() { display.UIsetItemName(); },
         [&]() { display.UIsetItemDetails(); },
