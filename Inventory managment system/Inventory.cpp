@@ -3,8 +3,8 @@
 #include <vector>
 #include <functional>
 
-
-Inventory::Inventory(std::vector<Item> items) { this->items = items; }
+Inventory::Inventory(std::vector<Item> items_param) : items(items_param) {}
+Inventory::Inventory() {}
 
 int Inventory::itemIdToIndex(int id) const { 
   for (int i = 0; i < this->items.size(); i++) {

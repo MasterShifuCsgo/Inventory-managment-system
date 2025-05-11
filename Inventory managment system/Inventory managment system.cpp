@@ -2,36 +2,28 @@
 #include <vector>
 #include <functional>
 #include <array>
+#include <string>
 #include "Inventory.h"
 #include "InventoryDisplay.h"
 #include "UserInput.h"
+#include "ItemCsvFileManager.h"
 
-int main() {
+int main(int argc, char* argv[]) {
   system("cls");  // unfortunately only works on windows
-
   std::cout << "Project: Simple Inventory Management System\n";
+  ItemCsvFileManager fileManager;
 
-  std::vector<Item> items = {};
-
-  float price = 0;
-  int quantity = 0;
-  std::string itemName = "item";
-  std::string details = "item";
-
-  for (int i = 0; i < 100; i++) {
-    Item item(price, quantity, itemName, details);
-    items.push_back(item);
-    price += 1;
-    quantity += 1;    
-    details += "item";
+  if (argc == 2) {          
+     //read the content of the csv and return a vector if items to insert to Inventory, no searching through the file, only through memory.     
+     fileManager.open(argv[1]);
+     
 
   }
-
-  Inventory inventory(items);
+  
+  
+  Inventory inventory(fileManager.getItems());
   InventoryDisplay display(inventory);
-
-
-
+      
     // maybe create a vairable for the lambda that is used to describe the function? this way the welcome page and this vector are not seperated.
     const std::vector<std::function<void(void)>> InteractableFunctions = {
         [&]() { display.UIsetItemName(); },
@@ -55,6 +47,10 @@ int main() {
     auto selection = getField<int>("Please select an option above: ");    
 
     if (!selection.has_value()) {
+
+      // save data to the new or already used CSV
+
+
       std::cout << "Exiting program.\n";
       break;
     }

@@ -9,6 +9,7 @@ class Inventory {
   std::vector<Item> items = {};
 
   Inventory(std::vector<Item> items);
+  Inventory();
   
   int itemIdToIndex(int id) const;
 

@@ -7,8 +7,8 @@
 class InventoryDisplay {
  public:
 
-   //used for operations in the Inventory class
-   Inventory inv;
+  //used for operations in the Inventory class
+  Inventory inv;
 
   InventoryDisplay(Inventory& inventory);  
 
