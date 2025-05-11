@@ -3,8 +3,8 @@
 
 class Item {
  private:
-  int id;
-
+  static int nextId;
+  int id;  
  public:
   // member variables
   float price = 0;

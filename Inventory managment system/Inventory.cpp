@@ -12,6 +12,7 @@ int Inventory::itemIdToIndex(int id) const {
       return i;
     }
   }
+  return 0;
 }
 
 void Inventory::setItemName(int itemId, const std::string& newName) {
@@ -46,7 +47,7 @@ void Inventory::setPrice(int itemId, float newPrice) {
   }
 }
 
-int Inventory::getItemId(int itemId) const {
+const int Inventory::getItemId(int itemId) const {
   if (itemId >= 0 && itemId < static_cast<int>(items.size())) {
     return items[itemIdToIndex(itemId)].getId();
   } else {
@@ -55,7 +56,7 @@ int Inventory::getItemId(int itemId) const {
   return -1;
 };
 
-std::string Inventory::getItemName(int itemId) const {
+const std::string Inventory::getItemName(int itemId) const {
   if (itemId >= 0 && itemId < static_cast<int>(items.size())) {
     return items[itemIdToIndex(itemId)].name;
   } else {
@@ -64,7 +65,7 @@ std::string Inventory::getItemName(int itemId) const {
   return "";
 }
 
-std::string Inventory::getItemDetails(int itemId) const {
+const std::string Inventory::getItemDetails(int itemId) const {
   if (itemId >= 0 && itemId < static_cast<int>(items.size())) {
     return items[itemIdToIndex(itemId)].details;
   } else {
@@ -73,7 +74,7 @@ std::string Inventory::getItemDetails(int itemId) const {
   return "";
 }
 
-int Inventory::getQuantity(int itemId) const {
+const int Inventory::getQuantity(int itemId) const {
   if (itemId >= 0 && itemId < static_cast<int>(items.size())) {
     return items[itemIdToIndex(itemId)].quantity;
   } else {
@@ -82,7 +83,7 @@ int Inventory::getQuantity(int itemId) const {
   return -1;
 }
 
-float Inventory::getPrice(int itemId) const {
+const float Inventory::getPrice(int itemId) const {
   if (itemId >= 0 && itemId < static_cast<int>(items.size())) {
     return items[itemIdToIndex(itemId)].price;
   } else {
@@ -91,7 +92,13 @@ float Inventory::getPrice(int itemId) const {
   return -1.0f;
 }
 
-void Inventory::addItem(Item item) { this->items.push_back(item); }
+const std::vector<Item>& Inventory::getItems() const {
+  return this->items;
+}
+
+void Inventory::addItem(Item item) {
+  this->items.push_back(item); 
+}
 
 void Inventory::deleteItem(int itemId) {
   if (itemId >= 0 && itemId < static_cast<int>(this->items.size())) {

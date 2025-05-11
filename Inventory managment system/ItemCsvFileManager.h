@@ -4,6 +4,7 @@
 #include <fstream>
 #include <optional>
 #include "Item.h"
+#include "Inventory.h"
 
 // how the csv file is formatted. 
 // 
@@ -19,19 +20,17 @@
 class ItemCsvFileManager {
    
   std::ifstream csvFile;
-  char delimiter = ',';
-  std::vector<Item> items {};
+  char delimiter = ',';  
+  std::vector<Item> items;
   
-  std::optional<Item> ConvertToItem(const std::string& row) const;
+  std::optional<Item> ConvertToItem(const std::string& row) const;  
   // reads a row from the csv file, returns an item if didnt fail.
   std::optional<Item> readRow(const int& i = 1) const;
 
   public:
   ItemCsvFileManager(const std::string& fileName);
   ItemCsvFileManager();
-  std::vector<Item> getItems() const;
+  const std::vector<Item>& getItems() const;
   void open(const std::string& fileName);
-  
-   
-  
+  void save(Inventory& inv, const std::string& fileName) const;
 };

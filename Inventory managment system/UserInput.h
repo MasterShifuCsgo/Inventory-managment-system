@@ -43,13 +43,11 @@ template <typename T>
     T value = getUserInput<T>();
 
     if constexpr (std::is_same_v<T, std::string>) {
-      if (value == "-1") {
-        std::cout << "Returning to main menu.\n";
+      if (value == "-1") {        
         return std::nullopt;
       }
     } else { // For numeric types
-      if (value == -1) {
-        std::cout << "Returning to main menu.\n";
+      if (value == -1) {        
         return std::nullopt;
       }
     }

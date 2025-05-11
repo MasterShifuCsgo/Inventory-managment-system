@@ -3,11 +3,10 @@
 #include <iostream>
 #include <optional>
 #include <vector>
-#include <string>
 #include <sstream>
 #include "ItemCsvFileManager.h"
 #include "Item.h"
-
+#include "Inventory.h"
 
 // how the csv file is formatted.
 //
@@ -61,13 +60,15 @@
         return Item{price, quantity, name, details};
       }      
     } catch (const std::exception& e) {
-      std::cerr << "error parsing row: " << e.what() << '\n';
-      return std::nullopt;
+      std::cerr << "error parsing row: " << e.what() << '\n';      
     }
+    return std::nullopt;
   }
       
       
-  std::vector<Item> ItemCsvFileManager::getItems() const { return this->items; }
+  const std::vector<Item>& ItemCsvFileManager::getItems() const {
+    return this->items;
+  }
 
   void ItemCsvFileManager::open(const std::string& fileName) {
     csvFile.open(fileName);
@@ -90,4 +91,25 @@
       this->items.push_back(item.value());
       rowIndex++;
     }
+  }
+
+  void ItemCsvFileManager::save(Inventory& inv, const std::string& fileName) const
+  {
+
+    std::ofstream output(fileName);
+
+    /* name, price, quantity, details */
+    std::string row = "";        
+
+    for (const Item &item : inv.getItems()) { //getItems() returns const and by reference. items do get added because changes can be veiwed through UI display class, which also uses getItems() to derive items from inventory.             
+
+      row = row +item.name + delimiter + std::to_string(item.price) + delimiter +
+            std::to_string(item.quantity) + delimiter + item.details + '\n';            
+    }    
+    
+
+    
+    output << row;
+    output.flush();
+    output.close();
   }

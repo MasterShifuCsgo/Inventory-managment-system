@@ -248,7 +248,7 @@
               details.value());  // Use .value()
     inv.addItem(item);
     std::cout << "Operation Complete: Item addition.\nItem id: "
-              << inv.items.back().getId() << std::endl;
+              << inv.getItems().back().getId() << std::endl;
   }
 
   void InventoryDisplay::UIdeleteItem() {
